@@ -1,0 +1,136 @@
+---
+title: "課?<a0>?練習模<e7><89><88>"
+author: "Luisa-ux"
+date: "2020-10-18"
+output: output_format
+params:
+  id: "410873135"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Your code
+
+
+##time
+```{r}
+library(lubridate)
+```
+
+```{r}
+tpeTime <- ymd_hms("2020-03-18 13:52:40",
+        tz="Asia/Taipei")
+```
+
+```{r}
+pgTime <- mdy_hms("March 18, 2020, 05:52:40",
+                  tz="Europe/Lisbon")
+```
+
+```{r}
+tpeTimeVector<- ymd_hms(c("2020-03-18 13:52:40","2020-03-11 03:12:40"),tz="Asia/Taipei")
+```
+
+##type/class
+
+```{r}
+typeof(tpeTime)
+class(tpeTime)
+```
+
+```{r}
+tpeTime
+print(tpeTime)
+cat(tpeTime)
+```
+
+```{r}
+as.numeric(tpeTime)
+```
+```{r}
+print(as.character(tpeTime))
+cat(as.character(tpeTime))
+```
+
+##Let computer tell us time 
+
+```{r}
+tpeTime2 <- ymd_hms("2010-03-18 16:52:40",
+        tz="Asia/Taipei")
+pgTime2 <- mdy_hms("Mar.01, 2020, 03:52:40",
+                  tz="Europe/Lisbon")
+```
+
+```{r}
+tpeTime3<- with_tz(tpeTime2,tzone = "America/New_York")
+```
+
+```{r}
+tpeTime2
+tpeTime3
+```
+
+```{r}
+cat(tpeTime2)
+cat(tpeTime3)
+```
+
+```{r}
+pgTime3 <- 
+  with_tz(pgTime2, tzone="America/New_York")
+
+print(pgTime2)
+print(pgTime3)
+```
+
+```{r}
+tpeTime3
+pgTime3
+```
+
+```{r}
+tpeTime2- pgTime3
+```
+
+##save
+
+```{r}
+tpeTime
+class(tpeTime)
+as.character(tpeTime)
+```
+```{r}
+tpeTime_utc <- with_tz(tpeTime, tzone="UTC")
+as.character(tpeTime_utc)
+```
+
+```{r}
+ tpeTime_iso8601 <- format_ISO8601(tpeTime, usetz=T)
+tpeTime_iso8601
+```
+
+
+```{r}
+library(lubridate)
+```
+
+```{r}
+chiayiTime<-ymd_hms("2020-10-21 12:05:00",tz="Asia/Taipei")
+pgTime <- mdy_hms("Mar.01, 2020, 03:52:40",
+                  tz="Europe/Lisbon")
+
+chiayiTime2<- with_tz(chiayiTime,tz="America/New_York")
+
+print(chiayiTime2)
+```
+```{r}
+a<-chiayiTime-chiayiTime2
+a
+```
+
+```{r}
+
+```
+
