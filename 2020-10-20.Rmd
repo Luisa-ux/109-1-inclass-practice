@@ -1,0 +1,96 @@
+---
+title: "課?<a0>?練習模<e7><89><88>"
+author: "Luisa-ux"
+date: "2020-10-20"
+output: output_format
+params:
+  id: "410873135"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Your code
+
+```{r}
+categoryTemplate = 
+  list(
+    categoryName=character(),
+    items = list(
+    )
+  )
+
+saladCat<- 
+  list(
+    categoryName="沙拉套餐",
+    items=list(
+      list("板煎雞腿排經典凱薩沙拉",203
+      ),
+      list("炙燒鴨胸佐胡麻沙拉",203
+      ),
+      list("煙燻鮭魚佐酒醋沙拉",203
+      )
+    )
+  )
+print(saladCat)
+```
+```{r}
+library(lubridate)
+
+# Date/Time class
+purchasingTime <- 
+  ymd_hms("2020-03-31T13:40:55Z")
+
+# character
+location <- "一芳"
+item <- "水果茶"
+
+# numeric
+quantity <- 2
+
+mingsPurchase <-
+  list(
+    purchasingTime, 
+    location, 
+    quantity, 
+    item
+  )
+print(mingsPurchase)
+
+```
+
+
+```{r}
+# 「**2杯**」「**水果茶**」
+item1 <- list(
+  quantity=2,
+  `item name`="水果茶"
+)
+# 「**1杯**」「**日月紅茶**」
+item2 <- list(
+  quantity=1,
+  `item name`="日月紅茶"
+)
+
+mingsPurchase3 <-
+  list(
+    time = purchasingTime,
+    location = location,
+    items=list(
+      item1,
+      item2
+    )
+  )
+
+print(mingsPurchase3)
+```
+```{r}
+library(jsonlite) # 不少同學這行會有Error，還記得如何排除嗎？
+toJSON(mingsPurchase3)
+```
+```{r}
+save(item2,item1,file="myObjects.rda")
+```
+
+
