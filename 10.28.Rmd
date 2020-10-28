@@ -1,0 +1,113 @@
+install.packages("examR_0.1.0.tgz", repos = NULL, type = .Platform$pkgType)
+library(examR)
+setup_exam()
+
+
+remotes::install_github("tpemartin/examR")
+
+
+
+
+```{r}
+vectorExample <- c(p1="小明", p2="小英", p3="大雄")
+
+# 有多少位置可選：
+length(vectorExample)
+vectorExample
+```
+
+
+```{r}
+vectorExample[[3]]
+vectorExample[["p3"]]
+```
+```{r}
+listExampleWithName <- list(student = "小明", 學期 = list(`108-1` = list(list(name = "個體經濟學", 
+    teacher = "Alice", grade = 85)), `108-2` = list(list(name = "總體經濟學", 
+    teacher = "Mark", grade = 78))))
+listExampleWithName
+# 有多少位置可選：
+length(listExampleWithName)
+```
+
+```{r}
+str(listExample)
+names(listExample)
+```
+```{r}
+listExample[[1]]
+listExample[["student"]]
+```
+```{r}
+listExample$學期
+```
+
+```{r}
+vectorExample[c(1,3)]
+vectorExample[c("p1","p3")]
+```
+```{r}
+vectorExample[c(T,F,T)]
+
+c(T,F,T)-> Pick
+vectorExample[Pick]
+```
+```{r}
+str(listExampleWithName,1)
+listExampleWithName[c(1,2)]
+listExampleWithName[c(T,T)]
+```
+
+```{r}
+numVector <- c(2, 3, 6, -1, 4, 2, 6)
+select1 <- numVector[c(1, 4)]
+select1
+select2 <- select1[[1]]
+select2
+
+# 相當於
+numVector[c(1, 4)][[1]]
+```
+
+```{r}
+majors <- c("經濟學系", "經濟學系", "社會學系", "社工系", "經濟學系")
+studentNAmes <- c("小英", "小美", "大雄", "阿華", "阿尼")
+gender <- c("F", "F", "M", "F", "M")
+
+majors
+
+pickEco<-c(T,T,F,F,T)
+pickEco<- studentNAmes=="經濟學系"
+studentNAmes[pickEco]
+```
+
+```{r}
+pickEcoNum<- c(1,2,5)
+studentNAmes[pickEcoNum][c(1,2)][[1]]
+pickEcoMale<-c(F,F,T)
+StudentEcomale<-studentNAmes[pickEcoMale]
+```
+
+```{r}
+today <- list(list("台北市", c(highest_temp = 25), c(lowest_temp = 18)), list("新北市", 
+    c(highest_temp = 24), c(lowest_temp = 15)))
+tomorrow <- list(list("台北市", c(highest_temp = 25), c(lowest_temp = 18)), list("新北市", 
+    c(highest_temp = 24), c(lowest_temp = 15)))
+
+weather <- list(today, tomorrow)
+
+print(weather)
+```
+
+```{r}
+str(weather,3)
+```
+
+```{r}
+weather[[1]]
+str(weather[[1]],1)
+weather[[1]][[1]][[2]]
+weather[[1]][[2]][[2]][["highest_temp"]]<- "schlect"
+str(weather,3)
+```
+
