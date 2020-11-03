@@ -1,0 +1,250 @@
+---
+title: "課?<a0>?練習模<e7><89><88>"
+author: "Luisa-ux"
+date: "2020-11-03"
+output: output_format
+params:
+  id: "410873135"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Your code
+
+```{r}
+`我的年紀`<- 20
+my_age<- `我的年紀`
+my_age
+```
+
+```{r}
+vunm<- c(1,2,3,c(100,99))
+vunm
+v
+```
+
+```{r}
+vNum1 <- c(-1,5)
+vNum2 <- c(2,3)
+vNum3 <- c(vNum2, vNum1)
+vNum4 <- c(vNum4, vNum1) # 向量疊代 （recursive vector concatenate）
+vNum3
+vNum4
+```
+
+```{r}
+vNum6<- c()
+vNum6<- c(vNum6,vNum1)
+vNum6
+```
+
+```{r}
+
+num<- c(1L,2L)
+typeof(num)
+class(num)
+num1<- c(1,2)
+typeof(num1)
+class(num1)
+```
+
+```{r}
+# 10位學生的主系
+majors10_char <- c('經濟學系','社會學系','社會學系','經濟學系','經濟學系','社會學系','經濟學系','經濟學系','經濟學系','社會學系')
+
+typeof(majors10_char)
+class(majors10_char)
+```
+
+```{r}
+majors10_charFac<- factor(majors10_char)
+majors10_charFac
+typeof(majors10_charFac)
+class(majors10_charFac)
+as.integer(majors10_charFac)
+```
+
+```{r}
+stringInteger <- c("1","2","-11")
+class(stringInteger)# 無法進行數值運算
+as.integer(stringInteger)->stringInteger
+stringInteger+2
+```
+
+```{r}
+studentId <- c(410773002, 410773015)
+class(studentId)
+as.character(studentId)->studentId
+class(studentId)
+```
+
+```{r}
+tpeTime<- ymd_hms("2020-03-18 13:52:40",tz="Asia/Taipei")
+PtTime<- mdy_hms("Mar.18,2020, 05:52,40",tz="Europe/Lisbon")
+tpeTime-PtTime
+```
+
+```{r}
+tpeTime
+typeof(tpeTime)
+class(tpeTime)
+cat(tpeTime)
+as.character(tpeTime)
+as.numeric(tpeTime)->atime
+as.POSIXct(atime,origin="1970-01-01 00:00:00")
+cat(as.character(atime))
+cat(as.character(tpeTime))
+```
+
+```{r}
+tpeTime1<- with_tz(tpeTime,tz="America/New_York")
+PtTime1<- with_tz(PtTime,tz="America/New_York")
+tpeTime1
+PtTime1
+```
+
+```{r}
+# Method 2: pass as a character that fits ISO8601 date time description standard with tz onset specified
+tpeTime_iso8601 <- format_ISO8601(tpeTime, usetz=T)
+tpeTime_iso8601
+tpeTime <- ymd_hms(tpeTime_iso8601)
+tpeTime
+```
+
+```{r}
+purchaseTime<-ymd_hms("2020-03-11T06:56:17Z")
+
+location<- "7-11"
+item<-"milk"
+quantity<-2
+
+mingsPur<- list(time=purchaseTime,location=location,quantity=quantity,`item name`=item)
+mingsPur
+```
+
+```{r}
+item1<-list(quantity=2,`item name`="milk")
+item2<- list(quantity=1,`item name`="water")
+
+mingpu1<-list(time=purchaseTime,location=location,items=list(item1,item2))
+mingpu1
+mingpu1[[3]][[1]][[2]]
+```
+
+```{r}
+student1 <-
+  list(
+    name = character(),
+    id = character(),
+    gmail = character(),
+    googleClassroom =
+      list(
+        displayName = character()
+      ),
+    github =
+      list(
+        username = character(),
+        repoUrl = character()
+      ),
+    homeworks = list(),
+    exams = list(),
+    list()
+  )
+
+names(student1) # 每個元素名稱
+length(student1) # 元素個數
+str(student1,3)
+```
+```{r}
+library(lubridate)
+```
+
+```{r}
+hw1 <- list(
+  date=ymd("2020-10-21"),
+  grade=10
+)
+exam1 <- list(
+  date=ymd("2020-10-28"),
+  grade=50
+)
+student1 <-
+  list(
+    name = "Martin",
+    id = "007",
+    gmail = "mt@gm.ntpu.edu.tw",
+    googleClassroom =
+      list(
+        displayName = "MT L"
+      ),
+    github =
+      list(
+        username = "tpemartin",
+        repoUrl = "https://github.com/tpemartin/109-1-inclass-practice"
+      ),
+    homeworks = list(
+      hw1
+    ),
+    exams = list(
+      exam1
+    ),
+    list()
+  )
+
+str(student1, 2
+    )
+```
+
+```{r}
+categoryPlate<- list(
+  Salad=list(
+    Kaiser=list(
+      money=30
+    ),
+    chocolate=list(
+      money=50
+    )
+  ),
+  fries=list(
+    fish=list(
+      money=20
+    ),
+    chicken=list(
+      money=60
+    )
+  ),
+  soup=list(
+    tomato=list(
+      money=30
+    ),
+    pork=list(
+      money=40
+    )
+  )
+                     )
+str(categoryPlate)
+```
+
+```{r}
+browseURL("https://docs.google.com/spreadsheets/d/1EAG49qDKPWWi0ebkVr29TLrvVnoBPfkvxYY-J3xLAHY/edit#gid=458686645")
+
+```
+2020-03-11 14:31:27	2020-03-11 14:33:39
+
+```{r}
+aStudent<- c(
+  ymd_hms("2020-03-11 14:31:27","2020-03-11 14:33:39",tz="Asia/Taipei")
+)
+aStudent
+class(aStudent)
+```
+```{r}
+save(aStudent,categoryPlate,file="myObjects.Rda")
+```
+```{r}
+load("~/Github repo/myObjects.rda")
+
+```
+
