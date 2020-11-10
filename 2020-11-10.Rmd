@@ -1,0 +1,143 @@
+---
+title: "課?<a0>?練習模<e7><89><88>"
+author: "Luisa-ux"
+date: "2020-11-10"
+output: output_format
+params:
+  id: "410873135"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Your code
+
+```{r}
+install.packages("googlescheets4")
+```
+
+```{r}
+myname<- "mary"
+length(myname)
+```
+
+
+#c
+```{r}
+num1<-c(1,2,3)
+num1+2
+num2<-c(num1,4,5)
+num2+5
+class(num2)
+typeof(num2)
+str(num2)
+```
+
+```{r}
+vNum1 <- c(-1,5)
+vNum2 <- c(2,3)
+vNum4 <- c() # 空向量
+vNum3 <- c(vNum2, vNum1)
+vNum4 <- c(vNum4, vNum1) # 向量疊代 （recursive vector concatenate）
+vNum4
+```
+#typeof
+```{r}
+int<-c(4L,3L)
+char<-c("4")
+logi<- c(T)
+typeof(int)
+typeof(char)
+typeof(logi)
+```
+
+```{r}
+# 10位學生的主系
+majors10_char <- c('經濟學系','社會學系','社會學系','經濟學系','經濟學系','社會學系','經濟學系','經濟學系','經濟學系','社會學系')
+
+typeof(majors10_char)
+class(majors10_char)
+```
+#factor
+```{r}
+fac_major<- factor(majors10_char)
+fac_major
+Num_major<- as.numeric(fac_major)
+Num_major
+```
+#levels
+```{r}
+fac_major<- factor(majors10_char,levels = c("經濟學系","社會學系"))
+fac_major
+Num_major<- as.numeric(fac_major)
+Num_major
+```
+
+```{r}
+class(Num_major)
+typeof(fac_major)
+```
+
+```{r}
+studentId <- c(410773002, 410773015)
+as.character(studentId)-> studentId
+class(studentId)
+```
+#date/time
+
+```{r}
+install.packages("lubridate")
+```
+
+```{r}
+tpetime<- ymd_hms("2020-03-18 13:52:40", tz="Asia/Taipei")
+pttime<- mdy_hms("Mar.18,2020, 05:52:40", tz="Europe/Lisbon")
+```
+
+```{r}
+library(lubridate)
+```
+```{r}
+tpetime-pttime
+
+```
+
+```{r}
+utc<- ymd_hms("2020-03-18T13:52:40Z")
+cat(utc)
+class(utc)
+cat(as.character(utc))
+utc
+utcT<-with_tz(utc,tz="Asia/Taipei")
+utcT
+utcT-tpetime
+```
+
+```{r}
+utcTn<- as.POSIXct(1584539560,origin="1970/01/01")
+```
+```{r}
+utcti<- format_ISO8601(utcTn,usetz = T)
+utcti
+```
+
+#list
+```{r}
+MingP<- list(
+  zeit=utcti,
+  location="一芳",
+  quantity=2,
+  items=list("水果茶"=list("半糖","少冰"),"牛奶")
+)
+MingP
+str(MingP)
+```
+```{r}
+item1<-list('item name'="tea",quantity=2,favor=list("ice","no sugar"))
+item0<- list('item name'="milk", quantity=5,favor=list("warm")
+)
+items<-c(item1,item0)
+str(items)
+```
+
