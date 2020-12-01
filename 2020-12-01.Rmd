@@ -1,0 +1,169 @@
+---
+title: "課?<a0>?練習模<e7><89><88>"
+author: "Luisa-ux"
+date: "2020-12-01"
+output: output_format
+params:
+  id: "410873135"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Your code
+
+```{r}
+old_fct <- 
+  factor(c("4以下","5-10","11-15"))
+levels(old_fct) # 依序下的各類別名稱
+```
+
+```{r}
+levels(old_fct)<-c("青少年","幼兒","兒童")
+old_fct
+```
+
+```{r}
+set.seed(2018)
+gender<- sample(c("M","F"),10000,replace = T)
+```
+
+```{r}
+gender_Fac<- factor(
+  gender
+)
+levels(gender_Fac)
+
+levels(gender_Fac)<-c("女","男")
+gender_Fac
+```
+
+```{r}
+a<-c(178,172)
+names(a)
+names(a)<-c("john","mary")
+a
+a[["john"]]
+```
+
+```{r}
+old_fct2 <- 
+  factor(c("4以下","5-10","11-15", "5-10"))
+levels(old_fct2)
+levels(old_fct2) <- c("4以下","5-10","11-15")
+old_fct2
+old_fct2<-factor(old_fct2,levels = c("4以下","5-10","11-15"))
+old_fct2
+```
+
+```{r}
+ages_fctBy5 <- 
+  factor(
+    ages_chr,
+    levels = c("4以下","5-9","10-14", "15-19")
+  )
+
+levels(ages_fctBy5)
+table(ages_fctBy5)
+```
+
+```{r}
+levels(ages_fctBy5) <- c("10以下", "10以下", "10以上", "10以上")
+table(ages_fctBy5)
+```
+
+```{r}
+set.seed(2020)
+ages_chr <- sample(c("4以下","5-9","10-14", "15-19"), 10, replace=T)
+ages_chr<-factor(ages_chr)
+```
+
+```{r}
+ages_chr[[11]]<-c("10-14")
+ages_chr
+```
+
+```{r}
+ages_chr[c(12,13)]<-c("5-9","15-19")
+ages_chr
+levels(ages_chr)
+```
+```{r}
+levels(ages_chr)[[5]]<-"20-24"
+levels(ages_chr)
+ages_chr[[14]]<-"20-24"
+ages_chr
+ages_chr<-factor(ages_chr,levels = c("20-24","10-14", "15-19", "4以下", "5-9"))
+ages_chr
+```
+
+```{r}
+# 非類別資料
+numVect <- c(2, 5, 7)
+# 新增c(6, 10)
+numVect <- c(numVect, c(6,10))
+numVect
+```
+
+```{r}
+# 類別資料
+fctVector1 <- factor(c("a","b", "c", "a"))
+# 新增 'a', 'c
+attributes(fctVector1)
+fctVector
+fctVector <- c(fctVector, c('a','c'))
+fctVector
+```
+```{r}
+a_fac<-factor(c("a","a"))
+b_fac<-factor(c("b","b"))
+ab_fac<-list(a_fac,b_fac)
+ab_fac
+unlist(ab_fac)->ab_fac
+ab_fac
+```
+
+```{r}
+x <- c(1,5,8)
+y <- c(5,8)
+
+# x裡的元素值是不是屬於y集合
+x %in% y
+```
+
+```{r}
+example <- list(
+  name=c("小明","小花","小新","美美"),
+  height=c(175,166,170,160),
+  weight=c(77,NA,60,43),
+  birthday=lubridate::ymd(c("1998-03-11","1999-12-22","1995-08-22","2001-10-10")),
+  hobby=c("美食 旅遊","旅遊 時尚","3C 美食","音樂 旅遊"),
+  residence=c("Taipei","New Taipei","Taichung","Kaohsiung"),
+  allowance=factor(c("0-1000","1001-2000","2000+","1001-2000")),
+  bloodType=c("A","B","B","O")
+)
+
+str(example)
+pick_above170 <- example$height >= 170
+pick_above170
+pick_bloodB <- example$bloodType == "B"
+pick_loveFood <- 
+  stringr::str_detect(example$hobby,"美食")
+pick_loveFood
+pick_na <- is.na(example$weight)
+pick_after98 <- 
+  example$birthday >= lubridate::ymd("1998-01-01")
+set_TaipeiMetro <- c("Taipei","New Taipei")
+pick_fromTaipeiMetro <- 
+  example$residence %in% set_TaipeiMetro
+```
+
+```{r}
+str(example[c("name","hobby","bloodType")])
+
+example$name[
+    pick_loveFood & pick_bloodB
+  ]
+```
+
