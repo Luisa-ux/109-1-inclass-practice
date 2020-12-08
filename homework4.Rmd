@@ -1,0 +1,173 @@
+---
+title: "homework 4"
+output: html_document
+params:
+  studentName: "李明鳳"
+  studentID: "410873135"
+---
+
+# 注意事項
+
+存檔與填寫注意事項：
+
+假設你叫王小明，學號41078392。
+
+  1. 有些同學可能家裡電腦不是utf-8設定，為防萬一，請於存檔時使用：File > save with enconding, 然後選utf-8
+
+  2. 本文檔開始的Frontmatter中，studentID（即key）其value目前為"你的學號"，以上面學號為例則必需改成"41078392"；而studentName（key）其value目前為"你的名字"，以上面名字為例則必需改成"王小明"
+  
+> 每次作業滿分10分：有寫作業於期限內上傳得3分，剩餘7分依作業準確率決定最後得分多寡，除非該題另有規定。
+
+> 前述存檔與frontmatter要求缺任何一個則扣1分。
+
+請先執以下code chunk, 引入所需packages，答案禁止引用其他套件（Package）。
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F, eval=F)
+library(jsonlite); library(lubridate); library(readr); library(stringr); library(purrr)
+```
+
+# 題目
+
+完成第4章綜合練習以下幾題：
+
+### 4 Image{-}
+
+```{r data4}
+library(magick)
+# windows user needs this step
+download.file("https://www.dropbox.com/s/7ab61bq92s9yt4e/ntpu.png?dl=1",destfile = "./ntpu.png",mode = "wb")
+# read original image file
+ntpuLogo <- image_read("./ntpu.png")
+# convert image into a matrix of color codes (raster matrix)
+ntpuLogoRaster <- as.raster(ntpuLogo)
+
+# plot raster image
+plot(ntpuLogoRaster)
+```
+
+```{r}
+dim(ntpuLogoRaster) # show 183 rows x 300 columns pixels
+```
+
+```{r}
+ntpuLogoRaster1<-ntpuLogoRaster[155, 55] # get you "transparent" as a color
+plot(ntpuLogoRaster1)
+ntpuLogoMatrix <- as.matrix(ntpuLogoRaster)
+ntpuLogoMatrix[1, 1] # get you "transparent" as character
+plot(ntpuLogoRaster)
+
+plot(as.raster(ntpuLogoMatrix)) # work again
+```
+
+
+#### 4.1 Red frame{-}
+
+```{r}
+redSquare <- matrix( rep('red',90), 3, 3)
+redSquare
+
+redSquare_raster <- as.raster(redSquare)
+plot(redSquare_raster)
+```
+
+```{r ans41}
+# ntpuLogoRaster_redFrame
+ntpuLogoRaster_redFrame<-plot(ntpuLogoRaster)+box(lty = 1, col = 'red')
+as.raster(ntpuLogoRaster_redFrame)->ntpuLogoRaster_redFrame
+
+plot(ntpuLogoRaster_redFrame)
+
+```
+
+#### 4.2 Create grey rectangular{-}
+
+```{r ans42}
+# ntpuLogoRaster_greySelect
+```
+
+#### 4.3 Blue falcon{-} 
+
+
+```{r ans43}
+ntpuLogoRaster_blue <- ntpuLogoRaster
+{
+  # put your code inside here
+}
+ntpuLogoRaster_blue[whichIsNotTransparent] <- "blue"
+plot(ntpuLogoRaster_blue)
+# whichIsNotTransparent
+```
+
+### 6. Help spot{-}
+[婦幼安全警示點](https://data.gov.tw/dataset/6247)
+
+Run the following program to get the data object **hotSpot**
+```{r data6}
+hotSpot <- jsonlite::fromJSON(
+  "https://www.dropbox.com/s/77awvomxaseg8b3/helpSpot.json?dl=1", simplifyDataFrame = F
+)
+```
+
+
+
+#### 6.1 Delete Record{-}
+
+```{r ans61}
+# recordsList
+hotSpot$result$records->records
+class(records)
+records[[1]]<-NULL
+records->recordsList
+recordsList
+```
+
+
+#### 6.2 list to data frame{-}
+
+```{r ans62}
+# df_records
+purrr::transpose(records)->records_tran
+unlist(records_tran$No)->unlist_records_No
+unlist(records_tran$Address)->unlist_records_Add
+unlist(records_tran$DeptNm)->unlist_records_De
+unlist(records_tran$BranchNm)->unlist_records_Bra
+unlist(records_tran$Contact)->unlist_records_Con
+list(No=unlist_records_No,Address=unlist_records_Add,DeptNm=unlist_records_De,BranchNm=unlist_records_Bra,Contact=unlist_records_Con)->list_records
+df_records<-as.data.frame(list_records)
+df_records
+```
+
+#### 6.3{-}
+ 
+
+```{r ans63}
+## df_records[c("DeptNm", "BranchNm)]
+factor(unlist(df_records$DeptNm))->df_records$DeptNm
+factor(unlist(df_records$BranchNm))->df_records$BranchNm
+df_records
+class(df_records$DeptNm)
+class(df_records$BranchNm)
+df_records[c("DeptNm","BranchNm")]
+```
+
+#### 6.4{-}
+
+```{r ans64}
+# df_records$county
+```
+
+#### 6.5{-}
+
+```{r ans65}
+# df_records$zone
+zone<- list(北部地區=factor(c( "臺北市","新北市","基隆市","新竹市","桃園市","新竹縣","宜蘭縣")),
+中部區域=factor(c("臺中市","苗栗縣","彰化縣","南投縣","雲林縣")),
+南部區域=factor(c("高雄市","臺南市","嘉義市","嘉義縣","屏東縣","澎湖縣")),
+東部區域=factor(c("花蓮縣","臺東縣"))
+)
+df_records[6]<-list(unlist(zone))
+names(df_records)[6]<-"zone"
+class(df_records$zone)
+df_records$zone
+```
+
