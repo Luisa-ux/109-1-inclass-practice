@@ -1,0 +1,84 @@
+---
+title: "課?<a0>?練習模<e7><89><88>"
+author: "Luisa-ux"
+date: "2020-12-09"
+output: output_format
+params:
+  id: "410873135"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Your code
+
+```{r}
+library(stringr)
+```
+
+```{r}
+set.seed(2020)
+d1 <- sample(c(rep("4",10),rep("3",3),rep("7",3)), 25, replace=T)
+d2 <- sample(98:109, 25, replace=T)
+d3 <- sample(c("73", "74", "78", "83", "72"))
+d4 <- sample(1:120, 25, replace=T)
+d4 <- str_pad(d4, 3, side = "left", pad="0")
+schoolIds <- paste0(d1,d2,d3,d4)
+schoolIds
+```
+```{r}
+# {x} 前方卷帶連裝x條
+str_subset(schoolIds,
+           pattern='[0123456789]{9}')
+str_subset(schoolIds,
+           pattern='[0-9]{9}')
+str_subset(schoolIds,
+           pattern='[:digit:]{9}')
+```
+
+```{r}
+myLove2R <- c("我實在是太愛太愛太愛愛R課程了",
+  "我才是太愛太愛太太愛太太太愛R了",
+  "我則是太愛愛太愛太愛愛愛R了",
+  "找我太太聊天，我太太愛理不理的，我只好回去練我最愛的R。")
+```
+
+```{r}
+str_view_all(myLove2R, "太愛{2}")
+str_view_all(myLove2R,"(太愛太愛)")
+str_view_all(myLove2R,"太[愛]{1,2}")
+```
+
+```{r}
+# {1,2} 前面卷帶裝1～2條 
+str_view_all(myLove2R, "太[愛]{1,2}")
+str_view_all(myLove2R, "太愛{1,2}") # 卷帶只有一個字，可不寫[]
+
+# ? 前面卷帶不確定要不要裝（要裝也只會裝1條）
+str_view_all(myLove2R, "太愛[愛]?")
+```
+```{r}
+str_view_all(myLove2R, "太[愛]*")
+```
+```{r}
+str_view_all(myLove2R, "太[愛]{1,}")
+```
+
+```{r}
+str_view_all(myLove2R, "太愛[愛]?(?!理不理)")
+```
+
+```{r}
+str_view_all(myLove2R, "太+愛+(?!理不理)")
+```
+
+```{r}
+addresses <- c(
+  '臺中市后里區公館里尾社路385號',
+  '新竹市東區科學園路125號1樓',
+  '新竹市北區竹光路99號',
+  '金門縣金城鎮賢庵里山前33號',
+  '臺中市南屯區工業區二十四路23號1樓')
+```
+
