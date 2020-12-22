@@ -1,0 +1,1044 @@
+---
+title: "課?<a0>?練習模<e7><89><88>"
+author: "Luisa-ux"
+date: "2020-12-15"
+output: output_format
+params:
+  id: "410873135"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Your code
+
+```{r}
+today <- list(
+  list("台北市",c(highest_temp = 25),c(lowest_temp = 18)),
+  list("新北市",c(highest_temp = 24),c(lowest_temp = 15)))
+tomorrow <- list(
+  list("台北市",c(highest_temp = 25),c(lowest_temp = 18)),
+  list("新北市",c(highest_temp = 24),c(lowest_temp = 15)))
+
+weather <- list(today,tomorrow)
+
+print(weather)
+```
+```{r}
+weather[[1]][[2]][[2]] # 今天/新北市/highest_temp
+weather[[2]][[2]][[2]] # 明天/新北市/highest_temp
+```
+
+```{r}
+AA = c(Mary=176, John=188, Jenny= 165, Kate=170)
+LL = list(
+  Mary=list(176,"Taipei"),
+  John=list(188,"New Taipei"),
+  Jenny=list(165,"Taichung"),
+  Kate=list(170,"Hualien")
+)
+```
+
+```{r}
+AA[c(1,4)]
+LL[c(1,4)]
+AA[c("Mary","Kate")]
+LL[c("Mary","Kate")]
+```
+```{r}
+AA[c(T, F, F, T)]
+LL[c(T, F, F, T)]
+```
+
+```{r}
+AA[[1]]
+LL$Mary
+AA[1]
+LL[[1]]
+LL[1]
+```
+
+#4.2
+```{r}
+a <- c(2, 5, 7)
+a[4]<-8
+a
+```
+
+```{r}
+restaurant = "すき家 Sukiya (新北三峽店)"
+date = lubridate::mdy("Nov 10, 2020")
+order = list(
+  list(
+    item="蕃茄牛丼",
+    quantity=1
+  ) # 這裡少了一筆 "起司蕃茄牛丼"
+)
+total = 328
+```
+```{r}
+oneOrder<- list(
+  restaurant=restaurant,
+  date=date,
+  order=order,
+  total=total
+)
+```
+```{r}
+View(oneOrder)
+oneOrder[["order"]][[2]]<- list(
+    item="起司蕃茄牛丼",
+    quantity=1
+  )
+```
+```{r}
+template<-oneOrder[["order"]][[1]]
+template
+template$item<-"起司蕃茄牛丼"
+template$quantity<-1
+oneOrder[["order"]][[2]]<- template
+oneOrder[["order"]][[2]]
+```
+
+
+```{r}
+a <- c(2, 5, 7)
+a[c(4,5)]<-c(8,9)
+a
+```
+
+```{r}
+currentNumberOfOrder <- length(oneOrder$order)
+# new order sequence number
+newOrderSeq <- 1:2 + currentNumberOfOrder
+newOrderSeq
+oneOrder$order[newOrderSeq]
+```
+
+```{r}
+currentNumberOfOrder
+class(oneOrder$order)
+```
+
+```{r}
+item1_value<- list(
+  item="牛丼飯",
+  quantity=1
+)
+item2_value<- list(
+  item="豬排飯",
+  quantity=1
+)
+oneOrder$order[newOrderSeq]<-list(
+  item1_value,
+  item2_value
+)
+oneOrder$order
+```
+```{r}
+# 取出目前已有的子元素一個當模版
+newOrders<- c(3,4)
+secondItem <- oneItem <- oneOrder$order[[1]]
+
+oneItem$item <- "牛丼飯"
+oneItem$quantity <- 1
+secondItem$item <- "豬排飯"
+secondItem$quantity <- 1
+
+oneOrder$order[newOrders] <- list(
+  oneItem, secondItem
+)
+oneOrder$order
+```
+```{r}
+library(lubridate)
+```
+
+```{r}
+LL0 <- LL <- list(
+  "Mary was born on", 
+  ymd("1995-7-1"),
+  "John was born on",
+  ymd("1997-10-27")
+  )
+LL[[2]]
+```
+```{r}
+LL[[2]] <- ymd("1995-7-8")
+print(LL)
+```
+```{r}
+oneOrder$order[[1]]$quantity<-2
+```
+
+```{r}
+class(LL)
+LL <- LL0
+LL[c(2,4)]
+LL[c(2,4)] <- 
+  list(
+    ymd("1995-7-8"),
+    ymd("1997-10-17")
+  )
+print(LL[c(2,4)])
+```
+```{r}
+allMyOrders0 <- allMyOrders <-  # allMyOrder0等一下還原用
+  list(
+    oneOrder
+  )
+```
+
+```{r}
+anotherOrder <- 
+  list(
+    restaurant="古橋飲食店",
+    date=lubridate::mdy("Nov 9, 2020"),
+    order=list(
+      list(
+        item="古早味排骨飯",
+        quantity=1
+      )
+    ),
+    total=89
+  )
+thirdOrder <-
+  list(
+    restaurant="Tijo Kitchen",
+    date=lubridate::mdy("Nov 8, 2020"),
+    order=list(
+      list(
+        item="韓式泡菜黑咖哩飯",
+        quantity=1
+      )
+    )
+  )
+```
+
+```{r}
+allMyOrders[[2]] <- anotherOrder
+allMyOrders[[3]] <- thirdOrder
+
+str(allMyOrders)
+View(allMyOrders)
+```
+
+```{r}
+allMyOrders <- allMyOrders0
+allMyOrders[c(2,3)] <- list(
+  anotherOrder,
+  thirdOrder
+)
+str(allMyOrders)
+View(allMyOrders)
+```
+
+```{r}
+total<-160
+allMyOrders[[3]][[4]]<-160
+names(allMyOrders)[[3]][[4]]<-"total"
+```
+
+
+```{r}
+a <- c("L", "K", "Z")
+a[-c(1,3)] # 不選1，3 
+a <- a[-c(1,3)] # 刪去1, 3
+```
+
+```{r}
+LL <- list('a', T, 183)
+LL[c(1,3)] <- NULL 
+print(LL) 
+```
+
+```{r}
+a0 <- a <- c(John=178, Mary=170, Hanson=180)
+names(a)
+
+names(a) <- c("John", "Kate", "Hason")
+names(a)
+
+a <- a0
+names(a)[[2]] <- "May"
+names(a)
+```
+
+```{r}
+sequenceNums <- c(11, 6, 8, 11, 12, 11, 3, 7, 10, 8)
+print(sequenceNums)
+
+sequenceNums %% 2 # 餘數為1則是奇數，0則是偶數
+```
+
+```{r}
+5*c(1,3,4)+7
+# 其實是
+c(5)*c(1,3,4)+c(7)
+
+## 對向量5，向量7進行recycle:
+c(5,5,5)*c(1,3,4)+c(7,7,7)
+## Recycle等長後才進行elementwise operation:
+c(5*1+7, 5*3+7, 5*4+7)
+```
+
+```{r}
+# 狀況一: 堆疊一定倍數剛好一樣長
+c(2,3)/c(-2,-13,10,22)
+c(2,3,2,3)/c(-2,-13,10,22)
+```
+
+```{r}
+# 狀況二: 倍數堆疊一定會超過，只好截斷
+c(2,3)/c(-2,-13,10)
+c(2,3,2)/c(-2,-13,10)
+```
+
+```{r}
+paste0(
+  c("我叫"), c("小明","小美")
+)
+```
+
+```{r}
+paste0(
+  c("他叫","我叫"), c("小明","小美","大雄")
+)
+```
+
+```{r}
+example <- list(
+  name=c("小明","小花","小新","美美"),
+  height=c(175,166,170,160),
+  weight=c(77,NA,60,43),
+  birthday=lubridate::ymd(c("1998-03-11","1999-12-22","1995-08-22","2001-10-10")),
+  hobby=c("美食 旅遊","旅遊 時尚","3C 美食","音樂 旅遊"),
+  residence=c("Taipei","New Taipei","Taichung","Kaohsiung"),
+  allowance=factor(c("0-1000","1001-2000","2000+","1001-2000")),
+  bloodType=c("A","B","B","O")
+)
+View(example)
+```
+```{r}
+tr_example<- purrr::transpose(example)
+View(tr_example)
+as.data.frame(example)->df_example
+as.data.frame(tr_example)
+```
+```{r}
+# 使用list的工具
+df_example$name[c(1,4)]
+
+# 使用data frame的延伸工具`[.row, .column]`
+df_example[c(1,4), "name"]
+```
+
+```{r}
+df_example[c(1,4),c("name","residence")]
+```
+
+```{r}
+example$name[c(T, F, T, F)]
+```
+
+```{r}
+str(example[c("name","height")])
+
+pick_above170 <- example$height >= 170
+example$height
+c(175, 166, 170, 160) >= 170
+pick_above170
+example$name[pick_above170]
+```
+```{r}
+example$birthday>=ymd("1998-01-01")->pick_data
+example$name[pick_data]
+```
+```{r}
+print(example[c("name","birthday")])
+
+pick_after98 <- example$birthday >= lubridate::ymd("1998-01-01")
+example$name[pick_after98]
+```
+
+```{r}
+print(example[c("name","allowance")])
+
+pick_allowanceOver1000 <- example$allowance >= "1001-2000"
+example$name[pick_allowanceOver1000]
+```
+
+```{r}
+example$allowance <- 
+  ordered(example$allowance)
+```
+```{r}
+example$allowance <-
+  factor(
+    example$allowance,
+    levels=c("0-1000", "1001-2000", "2000+"),
+    ordered = T # 設定為可排序factor
+  )
+```
+
+```{r}
+print(example[c("name","bloodType")])
+
+pick_bloodB <- example$bloodType == "B"
+example$name[pick_bloodB]
+```
+
+```{r}
+x <- c(1,5,8)
+y <- c(5,8)
+
+# x裡的元素值是不是屬於y集合
+x %in% y
+```
+
+```{r}
+print(example[c("name","residence")])
+
+set_TaipeiMetro <- c("Taipei","New Taipei")
+pick_fromTaipeiMetro <- example$residence %in% set_TaipeiMetro
+example$name[pick_fromTaipeiMetro]
+```
+
+```{r}
+pick_not_fromTaipeiMetro <- ! pick_fromTaipeiMetro
+# 或
+pick_not_fromTaipeiMetro <- !(example$residence %in% set_TaipeiMetro) # (..) 裡面會先運算完才做外面!的處理
+```
+
+```{r}
+x2 <- c(1,NA,10)
+y2 <- c(-1,NA,20)
+
+x3 <- c(NA,"小花")
+y3 <- c(NA,"小華")
+```
+
+```{r}
+x2
+is.na(x2)
+```
+```{r}
+print(example[c("name","weight")])
+
+pick_na <- is.na(example$weight)
+example$name[pick_na]
+```
+
+```{r}
+print(example[c("name","hobby")])
+
+pick_loveFood <- stringr::str_detect(example$hobby,"美食")
+example$name[pick_loveFood]
+```
+```{r}
+example[["hobby2"]] <- c("美食", "時尚", "美食", "旅遊")
+
+print(example[c("name", "hobby2")])
+pick_loveFood2 <- example$hobby2 == "美食"
+example$name[pick_loveFood2]
+```
+```{r}
+library(stringr)
+```
+
+```{r}
+fruit <- c("apple", "banana", "pear", "pinapple")
+str_detect(fruit, "a")
+str_detect(fruit, "^a")
+str_detect(fruit, "a$")
+str_detect(fruit, "b")
+str_detect(fruit, "[aeiou]")
+
+# Also vectorised over pattern
+str_detect("aecfg", letters)
+
+# Returns TRUE if the pattern do NOT match
+str_detect(fruit, "^p", negate = TRUE)
+fruit <- c("apple", "banana", "pear", "pinapple")
+str_detect(fruit, "a")
+str_detect(fruit, "^a")
+str_detect(fruit, "a$")
+str_detect(fruit, "b")
+str_detect(fruit, "[aeiou]")
+
+# Also vectorised over pattern
+str_detect("aecfg", letters)
+
+# Returns TRUE if the pattern do NOT match
+str_detect(fruit, "^p", negate = TRUE)
+```
+
+```{r}
+str(example)
+pick_above170 <- example$height >= 170
+pick_bloodB <- example$bloodType == "B"
+pick_loveFood <- 
+  stringr::str_detect(example$hobby,"美食")
+pick_na <- is.na(example$weight)
+pick_after98 <- 
+  example$birthday >= lubridate::ymd("1998-01-01")
+set_TaipeiMetro <- c("Taipei","New Taipei")
+pick_fromTaipeiMetro <- 
+  example$residence %in% set_TaipeiMetro
+```
+
+```{r}
+str(example[c("name","hobby","bloodType")])
+
+example$name[
+    pick_loveFood & pick_bloodB
+  ]
+```
+
+```{r}
+example[c("name","birthday","residence")]
+
+example$name[
+  pick_after98 | !pick_fromTaipeiMetro
+]
+```
+
+```{r}
+set.seed(2020)
+ages_chr <- sample(c("4以下","5-10","11-15"), 15, replace=T)
+ages_chr
+```
+
+```{r}
+table(ages_chr)
+```
+
+```{r}
+ages_fct1 <- 
+  factor(
+    ages_chr
+  )
+table(ages_fct1)
+table(ages_chr)
+```
+```{r}
+ages_fct3 <- 
+  factor(
+    ages_chr,
+    levels = c("4以下","5-10","11-15"),
+    ordered = T
+  )
+```
+
+```{r}
+ages_fct3[[3]] #4以下
+ages_fct3[[6]] #5-10
+ages_fct3[[3]] > ages_fct3[[6]]
+ages_fct3[[6]] < "11-15" # 也可以用文字寫下levels中有的分類
+```
+
+```{r}
+old_fct <- 
+  factor(c("4以下","5-10","11-15"))
+levels(old_fct) # 依序下的各類別名稱
+```
+
+```{r}
+levels(old_fct) <- c("青少年", "幼兒", "兒童")
+levels(old_fct)
+old_fct
+```
+
+```{r}
+set.seed(2020)
+ages_chr <- sample(c("4以下","5-9","10-14", "15-19"), 10, replace=T)
+ages_chr
+data_fct <- factor(ages_chr)
+length(data_fct)
+```
+
+```{r}
+data_fct[[11]] <- c("10-14")
+data_fct
+data_fct[c(12, 13)] <- c("5-9","15-19")
+data_fct
+```
+
+```{r}
+levels(data_fct) 
+data_fct[[14]] <- "20-24"
+data_fct[[14]]
+```
+
+```{r}
+levels(data_fct)[[5]] <- "20-24"
+levels(data_fct)
+data_fct[[14]] <- "20-24"
+data_fct
+```
+
+```{r}
+ages_chr <- sample(c("5-9","10-14", "15-19"), 8, replace=T)
+data_fct <- factor(ages_chr,
+                   levels = c("5-9","10-14", "15-19"),
+                   ordered = T)
+# 新增類別
+levels(data_fct)[c(4, 5)] <- c("20-24", "4以下")
+# 新增資料
+data_fct[c(9, 10, 11, 12)] <- c("20-24", "10-14", "15-19", "4以下")
+# factor parsing修正排序
+data_fct <- factor(
+  data_fct,
+  levels = c("4以下", "5-9","10-14", "15-19", "20-24")
+)
+data_fct
+```
+
+```{r}
+# 類別資料
+fctVector <- factor(c("a","b", "c", "a"))
+# 新增 'a', 'c'
+fctVector
+fctVector <- c(fctVector, c('a','c'))
+fctVector
+```
+
+```{r}
+a <- c(Mary=178, Jack=165)
+attr(a, "family") <- "Johnson"
+attributes(a)
+
+b <- c(Ben=170, David=172)
+attr(b, "family") <- "Jenson"
+attributes(b)
+
+a_b <- c(a, b)
+attributes(a_b)
+```
+
+```{r}
+list_ab <- list(a, b)
+list_ab
+attributes(list_ab)
+attributes(a)
+attributes(b)
+```
+
+```{r}
+unlist_ab <- unlist(list_ab)
+unlist_ab
+attributes(unlist_ab)
+```
+
+```{r}
+fct_a <- factor(c('a','d','e'))
+fct_b <- factor(c("a","e","j"))
+
+fct_ab <- 
+  c(fct_a, fct_b)
+fct_ab
+unlist(fct_ab)
+```
+
+```{r}
+library(stringr)
+library(glue)
+```
+
+```{r}
+thatsAlright <- 
+  jsonlite::fromJSON(
+    "https://www.dropbox.com/s/f3ox7rd5favr0o0/thatsAlright.json?dl=1"
+  )
+View(thatsAlright)
+```
+
+```{r}
+# 字串向量長度
+length(c("I will"))
+# 每個元素值有幾個字元(包含符號與空格)
+str_length(c("I will"))
+```
+
+```{r}
+# 字串向量長度
+length(thatsAlright)
+# 每個元素值有幾個字元
+str_length(thatsAlright)
+```
+
+```{r}
+line67 <- thatsAlright[c(6,7)]
+line67
+```
+
+```{r}
+str_split(line67, ",")
+```
+
+```{r}
+pattern="you" 
+```
+
+```{r}
+# 'you'是否出現在第1,2,3,...最後一句
+pick_you <- str_detect(thatsAlright, pattern="you")
+str_view_all(thatsAlright[pick_you],"you")
+```
+
+```{r}
+# 哪幾句有'you'出現
+whichHas_you <- str_which(thatsAlright, pattern="you")
+whichHas_you
+str_view_all(thatsAlright[whichHas_you],"you")
+```
+
+```{r}
+whichHas_you_fromPick <- which(pick_you)
+whichHas_you_fromPick
+```
+
+```{r}
+# 只留下有出現'you'字眼的句子
+onlyYou <- str_subset(thatsAlright, pattern="you")
+onlyYou
+length(thatsAlright)
+length(onlyYou)
+```
+
+```{r}
+# 每一句有幾個"you"
+countEach_you <- str_count(thatsAlright,
+                           pattern="you")
+countEach_you
+str_view_all(
+  thatsAlright[1:10], pattern="you")
+```
+
+```{r}
+patternWithBoundary="\\byou\\b"
+```
+```{r}
+str_view_all(
+  c("I am yours",
+    "And you?",
+    "Young and smart", 
+    "It means that you and I are lucky"),
+  pattern=patternWithBoundary
+)
+```
+
+```{r}
+Rmdfiles <- c("file1.Rmd", "file2.R", "file3.rmd", "file4.RMD", "myRmd.R")
+SchoolIds <- c("410973029", "410988011", "410974023","410783025","710773022","410788021","410673124","410873051","49988001")
+```
+
+```{r}
+regexPattern="[Rr][Mm][Dd]"
+str_subset(Rmdfiles,regexPattern)
+```
+
+```{r}
+regexPattern="4(108|109)(73|88)"
+str_subset(SchoolIds,pattern = regexPattern)
+```
+
+```{r}
+SchoolIds
+regexPattern="[4](108|109)(73|88)"
+str_subset(
+  SchoolIds, pattern=regexPattern)
+```
+
+```{r}
+sameIdentities <- c("臺北市", "台北市", "台北大學", "臺北大學", "基隆市")
+
+str_detect(
+  sameIdentities, pattern="[台臺]北市")
+str_view_all(
+  sameIdentities, pattern="[台臺]")
+```
+
+```{r}
+str_extract(
+  sameIdentities, pattern="[台臺]北市")
+```
+
+```{r}
+dragonPeople <-
+  c(
+    "住在台北市的臺北人也常被稱為天龍人")
+str_extract(
+  dragonPeople,
+  pattern="[台臺]北[市人]"
+)
+# 當一個元素值內的文字規律可多次出現時用_all來一網打盡，否則只處理第一個出現的規律
+str_extract_all(
+  dragonPeople,
+  pattern="[台臺]北[市人]"
+)
+```
+
+```{r}
+Rmdfiles # length=5
+str_replace(
+  Rmdfiles,
+  pattern = rep("[Rr][Mm][Dd]",5),
+  replacement = rep("Rmd",5)
+)
+```
+```{r}
+Rmdfiles # length=5
+str_replace(
+  Rmdfiles,
+  pattern = "[Rr][Mm][Dd]",
+  replacement = "Rmd"
+)
+```
+
+```{r}
+emailContent <- '親愛的_name_朋友好，
+
+  恭喜你，你的電子發票號碼_invoiceNumber_ 差點中獎。'
+cat(emailContent)
+```
+
+```{r}
+replacementNamedVector <- c(
+  "_name_" = "小新",
+  "_invoiceNumber_" = "EF-89400133"
+)
+
+synthesizedContent <- str_replace_all(
+  emailContent,
+  replacementNamedVector
+)
+cat(synthesizedContent)
+```
+
+```{r}
+set.seed(2020)
+d1 <- sample(c(rep("4",10),rep("3",3),rep("7",3)), 25, replace=T)
+d2 <- sample(98:109, 25, replace=T)
+d3 <- sample(c("73", "74", "78", "83", "72"))
+d4 <- sample(1:120, 25, replace=T)
+d4 <- str_pad(d4, 3, side = "left", pad="0")
+schoolIds <- paste0(d1,d2,d3,d4)
+schoolIds
+```
+
+```{r}
+# {x} 前方卷帶連裝x條
+str_subset(schoolIds,
+           pattern='[0123456789]{9}')
+str_subset(schoolIds,
+           pattern='[0-9]{9}')
+str_subset(schoolIds,
+           pattern='[:digit:]{9}')
+```
+
+```{r}
+myLove2R <- c("我實在是太愛太愛太愛愛R課程了",
+  "我才是太愛太愛太太愛太太太愛R了",
+  "我則是太愛愛太愛太愛愛愛R了",
+  "找我太太聊天，我太太愛理不理的，我只好回去練我最愛的R。")
+```
+```{r}
+str_view_all(myLove2R, "(太愛){2}")
+```
+
+```{r}
+str_view_all(myLove2R, pattern = "(太愛){2}")
+```
+
+```{r}
+# {1,2} 前面卷帶裝1～2條 
+str_view_all(myLove2R, "太[愛]{2,2}")
+str_view_all(myLove2R, "太愛{1,2}") # 卷帶只有一個字，可不寫[]
+
+# ? 前面卷帶不確定要不要裝（要裝也只會裝1條）
+str_view_all(myLove2R, "太愛[愛]?")
+```
+
+```{r}
+str_view_all(myLove2R, "太[愛]{1,}")
+```
+
+```{r}
+str_view_all(myLove2R, pattern = "太[愛]*")
+```
+```{r}
+str_view_all(myLove2R, "太+愛+")
+```
+
+```{r}
+str_view_all(myLove2R, pattern = "太+愛+(?!R)")
+```
+
+```{r}
+addresses <- c(
+  '臺中市后里區公館里尾社路385號',
+  '新竹市東區科學園路125號1樓',
+  '新竹市北區竹光路99號',
+  '金門縣金城鎮賢庵里山前33號',
+  '臺中市南屯區工業區二十四路23號1樓')
+```
+
+```{r}
+str_extract(
+  addresses,
+  pattern = "(?<=[縣市])[\u4E00-\u9FFF]+[區鎮]"
+)
+```
+
+```{r}
+str_extract(
+  addresses,
+  "(?<=[縣市])[^區]+[區鎮]"
+)
+```
+```{r}
+download.file("https://www.dropbox.com/s/o9kt3lxtx9pmjqj/homework2.Rmd?dl=1", destfile = "./hw2.Rmd", mode="wb")
+xfun::read_utf8("./hw2.Rmd") -> hw2lines
+View(hw2lines)
+```
+
+```{r}
+pick_starting3Hash <- str_detect(
+  hw2lines,
+  pattern = "^### (?=[0-9])"
+)
+sum(pick_starting3Hash)
+```
+
+```{r}
+pick_starting3Hash <- str_detect(
+  hw2lines,
+  "^### (?=[0-9])"
+)
+sum(pick_starting3Hash)
+```
+
+```{r}
+# Given some information
+R <- 0.09
+M <- 10000
+T <- 3
+# What I need to do
+PDV <- 
+{
+  M/(1+R)**T
+}
+```
+
+```{r}
+getPDV <- function(R,M,T) 
+{
+  M/(1+R)**T
+}
+getPDV
+class(getPDV)
+getPDV(R=0.09, T=3, M=10000)
+getPDV(0.09,10000,3)
+```
+
+```{r}
+debug(getPDV) 
+getPDV(R=0.09, T=3, M=10000) 
+undebug(getPDV)
+```
+
+```{r}
+# 查詢函數主體
+body(getPDV)
+```
+
+```{r}
+# body執行時若有物件不存在execution environment時要去找尋的environment
+environment(getPDV)
+```
+```{r}
+
+```
+
+```{r}
+# Given some information
+TT <- 3
+# What I need to do
+getPDV2 <- function(R,M){
+  M/(1+R)**TT
+}
+```
+
+```{r}
+getPDV2(R=0.12, M=50000)
+debug(getPDV2)
+getPDV2(R=0.12, M=50000)
+undebug(getPDV2)
+```
+
+```{r}
+TT <- 3
+getPDV2(R=0.12, M=50000)
+```
+
+```{r}
+testFun <- function(){
+  a <-2
+  b <- 5
+  a+b
+}
+testFun()
+```
+
+```{r}
+testErrorFun <- function(){
+  a <-2
+  b <- 5
+  output <- a+b
+}
+testErrorFun()
+```
+
+```{r}
+testFun <- function(){
+  a <-2
+  b <- 5
+  return(a+b)
+  a+3
+}
+testFun()
+```
+
+```{r}
+testFun <- function(){
+  a <-2
+  b <- 5
+  invisible(a+b)
+}
+testFun()
+output <- testFun()
+output
+```
+
+```{r}
+demandFun <- function(P) 5-3*P
+supplyFun <- function(P) 1+0.5*P
+market <- list(
+  demand=demandFun,
+  supply=supplyFun
+)
+market
+```
+
+```{r}
+df0 <- function(f){
+  epsilon <- 0.00001
+  (f(epsilon)-f(0))/epsilon
+}
+
+df0(market$demand)
+df0(market$supply)
+```
+
