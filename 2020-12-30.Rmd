@@ -1,0 +1,43 @@
+---
+title: "課?<a0>?練習模<e7><89><88>"
+author: "Luisa-ux"
+date: "2020-12-30"
+output: output_format
+params:
+  id: "410873135"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Your code
+
+```{r}
+set.seed(10739)
+customers <- data.frame(
+  bills = sample(200:500, 10),
+  vouchers = sample(c(T,F), size=10, replace=T,
+                     prob=c(0.4,0.6)
+                     )
+)
+head(customers)
+```
+
+```{r}
+bill <- customers$bills[[3]]
+hasVoucher <- customers$vouchers[[3]]
+totalBill <- 
+{
+  startingBill <- bill
+  if(hasVoucher)
+  {
+    bill <- bill - 20
+  }
+  message("You initial bill is ", startingBill,".\n",
+          "You final bill is ", bill)
+  bill
+}
+print(totalBill)
+```
+
